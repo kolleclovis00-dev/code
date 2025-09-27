@@ -4,161 +4,122 @@ void main() {
   runApp(MyApp());
 }
 
-// main applcation
+// main app widget codemy
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Switchn', // missing "o" like in your scren
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      title: 'Welcom Pack', // 
+      home: PurchasePassScreen(),
+      debugShowCheckedModeBanner: false, // remove the anoying banner
     );
   }
 }
 
-// this is home scren
-class HomePage extends StatelessWidget {
+// this is screen for purshase pass
+class PurchasePassScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Switchn"), // wrong spell
-        backgroundColor: Colors.lightBlue, // too bright maybe
-        leading: Icon(Icons.menu), // menu icon
+        title: Text("Welcom Pack"), // again mistake, not Welcome
+        backgroundColor: Colors.orangeAccent, // color little weird
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Balance Card
-              Container(
-                padding: EdgeInsets.all(15),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                "Purchase Pas", // missing s at end
+                style: TextStyle(
+                  fontSize: 24, // too big maybe
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue[300], // random blue
-                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue[200], // random blue, not matching
+                  borderRadius: BorderRadius.circular(5),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Balnce", // spelling error
-                            style: TextStyle(color: Colors.white, fontSize: 14)),
-                        Text("100 XAF",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text("699596551",
-                            style: TextStyle(color: Colors.white)),
-                        Icon(Icons.refresh, color: Colors.white),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-
-              // Quick buttons row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _quickBtn(Icons.phone_android, "Buy airtim"),
-                  _quickBtn(Icons.send, "Send fund"), // missing s
-                ],
-              ),
-              SizedBox(height: 15),
-
-              Text("Quik Actions", // mispelled quick
+                child: Text(
+                  "One mounth = one Welcom Pack bonnus!",
                   style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87)),
-              SizedBox(height: 10),
-
-              // grid like quick actions
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  _quickBtn(Icons.card_giftcard, "Buy bundel"),
-                  _quickBtn(Icons.swap_horiz, "Airtym to bundel"),
-                  _quickBtn(Icons.local_offer, "Gud Deal"),
-                  _quickBtn(Icons.support_agent, "Get suport"),
-                ],
-              ),
-
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Resent transctions", // wrong spelling
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                  Text("See all",
-                      style: TextStyle(color: Colors.blue, fontSize: 13)),
-                ],
-              ),
-              SizedBox(height: 15),
-
-              // Fake transaction card
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.orange,
-                  child: Text("O"), // instead of logo
-                ),
-                title: Text("699596551"),
-                subtitle: Text("Gud Deal 1000\ncompleted"),
-                trailing: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text("Bundel"), // mispelled bundle
-                    Text("1 weak ago",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
+                    fontSize: 13, // very smal font
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              "Chose your share form the avilable ofers.", // lots of mistakes here
+              style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildCard("Max it Super Bunos", "1Go", "100 u"),
+                _buildCard("Bonus Max it", "250Mo", "0 u"),
+              ],
+            ),
+          ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Hme"),
-          BottomNavigationBarItem(icon: Icon(Icons.phone), label: "Airtim"),
-          BottomNavigationBarItem(icon: Icon(Icons.attach_money), label: "Send"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: "Fund"),
-        ],
       ),
     );
   }
 
-  // Quick button widget
-  Widget _quickBtn(IconData icon, String txt) {
+  // card for show ofers
+  Widget _buildCard(String title, String data, String price) {
     return Container(
       width: 140,
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 1),
-        borderRadius: BorderRadius.circular(8),
         color: Colors.white,
+        border: Border.all(color: Colors.orange, width: 2), // thick border
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5), // shadow too dark
+            spreadRadius: 2,
+            blurRadius: 5,
+          )
+        ],
       ),
       child: Column(
         children: [
-          Icon(icon, color: Colors.blue),
+          Icon(Icons.card_giftcard, color: Colors.orange, size: 40), // random icon
           SizedBox(height: 5),
-          Text(txt, textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13)),
+          Text(
+            "Valdity 24H", // wrong spelling validity
+            style: TextStyle(fontSize: 12, color: Colors.black54),
+          ),
+          SizedBox(height: 5),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 13, // too small for title
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            data,
+            style: TextStyle(fontSize: 18, color: Colors.black),
+          ),
+          SizedBox(height: 10),
+          Text(
+            price,
+            style: TextStyle(color: Colors.red, fontSize: 14),
+          )
         ],
       ),
     );
